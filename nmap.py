@@ -1,3 +1,11 @@
+# This is a simple script that will perform an Nmap ping scan, compare it to a preconfigured list, and notify you if there are any changes between the baseline list and the new scan.
+# 
+# You must have ip_list.txt configured with a list of IP addresses for the Nmap scan in the same directory.
+# 
+# You must have a baseline.txt file configured with the expected output of the # scan in the same directory.
+# The output will be listed in a text file named by the date on the computer.
+
+#!/bin/python
 import smtplib
 import time
 import os
@@ -9,6 +17,7 @@ def notify():
 
     sender = 'SERVER_ALERT@company.com'
     recipient = 'erik.dominguez@mosaik.com'
+    recipient = 'YOUR EMAIL ADDRESS HERE'# Must enter the receiving email address
     subject = 'SERVER STATUS ALERT'
     body = str(problems) + " Status has changed"
 
@@ -25,6 +34,7 @@ def notify():
     session.ehlo()
     session.starttls()
     session.login('mosaik.server.alerts@gmail.com', 'M0saik!!')
+    session.login('EMAIL HERE', 'EMAIL PASSWORD HERE')#Must enter a valid gmail account address and password
 
     session.sendmail(sender, recipient, headers + "\r\n\r\n" + body)
     session.quit()

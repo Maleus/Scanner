@@ -16,7 +16,6 @@ def notify():
     SMTP_PORT = 587
 
     sender = 'SERVER_ALERT@company.com'
-    recipient = 'erik.dominguez@mosaik.com'
     recipient = 'YOUR EMAIL ADDRESS HERE'# Must enter the receiving email address
     subject = 'SERVER STATUS ALERT'
     body = str(problems) + " Status has changed"
@@ -33,7 +32,6 @@ def notify():
     session = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
     session.ehlo()
     session.starttls()
-    session.login('mosaik.server.alerts@gmail.com', 'M0saik!!')
     session.login('EMAIL HERE', 'EMAIL PASSWORD HERE')#Must enter a valid gmail account address and password
 
     session.sendmail(sender, recipient, headers + "\r\n\r\n" + body)
